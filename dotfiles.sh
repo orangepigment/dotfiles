@@ -7,6 +7,8 @@ DOTFILES=(
   "$HOME/.config/yazi/yazi.toml:yazi.toml"
   "$HOME/.config/zed/settings.json:zed/settings.json"
   "$HOME/.config/zed/keymap.json:zed/keymap.json"
+  "$HOME/.config/macchina/macchina.toml:macchina/macchina.toml"
+  "$HOME/.config/macchina/themes/Cadmium.toml:macchina/themes/Cadmium.toml"
 )
 
 copy_with_mkdir() {
@@ -31,7 +33,9 @@ save() {
     source="${dotfile##*:}"
     copy_with_mkdir "$destination" "$source"
   done
-  echo "Dotfiles saved"
+  
+  brew bundle dump -f
+  echo "Dotfiles and Brewmake saved"
 }
 
 

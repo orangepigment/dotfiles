@@ -1,0 +1,32 @@
+# Specifies the network interface to use for the LocalIP readout
+interface = "en0"
+
+# Disks to show disk usage for
+disks = ["/"]
+
+memory_percentage = true
+
+theme="Cadmium"
+
+show = [
+	#"Host",
+	"Machine",
+	#"Kernel",
+	#"Distribution",
+	"OperatingSystem",
+	#"DesktopEnvironment",
+	#"WindowManager",
+	#"Resolution",
+	"Backlight",
+	#"Packages",
+	"LocalIP",
+	"Terminal",
+	"Shell",
+	"Uptime",
+	"Processor",
+	"ProcessorLoad",
+	"Memory",
+	"Battery",
+	#"GPU",
+	"DiskSpace",
+]

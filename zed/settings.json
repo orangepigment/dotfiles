@@ -1,0 +1,184 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    // AI and telemetry
+    "terminal": {
+        "font_family": "JetBrainsMono Nerd Font Mono"
+    },
+    "ui_font_family": "Inter",
+    "buffer_font_family": "JetBrains Mono",
+    "git_panel": {
+        "tree_view": true,
+    },
+    "notification_panel": {
+        "button": false,
+    },
+    "disable_ai": true,
+    "agent": {
+        "enable_feedback": false,
+        "enabled": false,
+        "button": false,
+    },
+    "telemetry": {
+        "diagnostics": true,
+        "metrics": false,
+    },
+    // Appearance
+    "ui_font_size": 15.0,
+    "buffer_font_size": 14.0,
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "JetBrains New UI Icons (Dark)",
+    },
+    "theme": {
+        "mode": "system",
+        "light": "Darcula Dark - Okkano Version",
+        "dark": "Darcula Dark - Okkano Version",
+    },
+    "collaboration_panel": {
+        "button": false,
+    },
+    "title_bar": {
+        "show_branch_icon": true,
+        "show_sign_in": false,
+    },
+    "project_panel": {
+        "hide_hidden": false,
+        "git_status_indicator": true,
+    },
+    "tabs": {
+        "file_icons": true,
+    },
+    "theme_overrides": {
+        "Darcula Dark - Okkano Version": {
+            "syntax": {
+                // For TODO  higlights
+                "constant.comment.todo": { "color": "#FFD230" },
+                "string.comment.info": { "color": "#FFD230" },
+                "keyword.comment.warn": { "color": "#FFD230" },
+                "property.comment.error": { "color": "#FFD230" },
+            },
+        },
+        "Tiniri Dark": {
+            "syntax": {
+                //"constant": { "color": "#CC7832" },
+                //"constant": { "color": "#D28450" },
+                //"function": { "color": "#938A80" },
+
+                "string": { "color": "#6A8759" },
+                "comment.doc": { "color": "#6A8759" },
+
+                //"type": { "color": "#89B482FF" },
+                "type": { "color": "#938A80" },
+
+                // "keyword": { "color": "#C49A31" },
+                "keyword": { "color": "#C49A31AA" },
+                //"variable": { "color": "#938A80" },
+
+                // For TODO  higlights
+                "constant.comment.todo": { "color": "#D2C232" },
+                "string.comment.info": { "color": "#D2C232" },
+                "keyword.comment.warn": { "color": "#D2C232" },
+                "property.comment.error": { "color": "#D2C232" },
+            },
+        },
+    },
+    // Behaviour
+    "autosave": { "after_delay": { "milliseconds": 500 } },
+    "base_keymap": "JetBrains",
+    "tab_size": 4,
+    "preview_tabs": {
+        "enable_preview_from_project_panel": false,
+    },
+    "text_rendering_mode": "grayscale",
+    //"colorize_brackets": true,
+    "buffer_font_features": {
+        "calt": false, // Ligatures
+    },
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true,
+        "show_background": false,
+        "edit_debounce_ms": 700,
+        "scroll_debounce_ms": 50,
+        "toggle_on_modifiers_press": null,
+    },
+    // Language specific settings
+    "languages": {
+        "Python": {
+            "language_servers": [
+                // Enable ty, disable basedpyright, and enable ruff
+                "ty",
+                "!basedpyright",
+                "ruff",
+            ],
+        },
+        "Shell Script": {
+            //"format_on_save": "on",
+            "formatter": {
+                "external": {
+                    "command": "shfmt",
+                    // Change `--indent 2` to match your preferred tab_size
+                    "arguments": [
+                        "--filename",
+                        "{buffer_path}",
+                        "--indent",
+                        "2",
+                    ],
+                },
+            },
+        },
+    },
+    "lsp": {
+        "rust-analyzer": {
+            "initialization_options": {
+                "inlayHints": {
+                    "maxLength": null,
+                    "lifetimeElisionHints": {
+                        "enable": "skip_trivial",
+                        "useParameterNames": true,
+                    },
+                    "closureReturnTypeHints": {
+                        "enable": "always",
+                    },
+                },
+            },
+        },
+        "metals": {
+            "binary": {
+                "arguments": ["-Dmetals.http=on"],
+            },
+            "initialization_options": {
+                "isHttpEnabled": true,
+            },
+            "settings": {
+                "inlayHints": {
+                    "inferredTypes": {
+                        "enable": true,
+                    },
+                    "implicitArguments": {
+                        "enable": true,
+                    },
+                    "implicitConversions": {
+                        "enable": true,
+                    },
+                    "typeParameters": {
+                        "enable": true,
+                    },
+                    "hintsInPatternMatch": {
+                        "enable": true,
+                    },
+                },
+            },
+        },
+    },
+}

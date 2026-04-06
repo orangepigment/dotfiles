@@ -9,6 +9,7 @@ DOTFILES=(
   "$HOME/.config/zed/keymap.json:zed/keymap.json"
   "$HOME/.config/macchina/macchina.toml:macchina/macchina.toml"
   "$HOME/.config/macchina/themes/Cadmium.toml:macchina/themes/Cadmium.toml"
+  "$HOME/.config/micro/settings.json:micro/settings.json"
 )
 
 copy_with_mkdir() {

@@ -9,6 +9,8 @@ help() {
 
 alias git='LANG=en_GB git'
 
+alias eza="eza --git-ignore"
+
 # provides the ability to change the current working directory when exiting Yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -32,3 +34,6 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 export HSTR_TIOCSTI=y
 export HISTFILE=~/.zsh_history
+
+eval "$(zoxide init zsh)"
+

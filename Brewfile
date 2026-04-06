@@ -25,6 +25,7 @@ brew "starship"
 brew "uv"
 brew "xh"
 brew "yazi"
+brew "zoxide"
 brew "zsh-syntax-highlighting"
 brew "dart-lang/dart/dart", link: false
 brew "dart-lang/dart/dart@2.19", link: true

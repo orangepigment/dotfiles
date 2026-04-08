@@ -22,6 +22,9 @@ truncation_symbol = '…/'
 [git_branch]
 symbol = ''
 
+[git_status]
+modified = 'M'
+
 [rust]
 format = '[$symbol($version )]($style)'
 

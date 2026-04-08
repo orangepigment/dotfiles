@@ -1,0 +1,30 @@
+[[language]]
+name = "rust"
+formatter = { command = "cargo", args = ["fmt"] }
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[[language]]
+name = "python"
+language-servers = ["ty", "ruff"]
+auto-format = true
+
+[language-server.ty]
+command = "uvx"
+args = ["ty", "server"]
+
+[language-server.ty.config]
+inlayHints.callArgumentNames = false
+experimental.rename = true
+experimental.autoImport = true
+
+[language-server.ruff]
+command = "uvx"
+args = ["ruff", "server"]
+
+[[language]]
+name = "bash"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = 'shfmt', args = ["-i", "4"] }
+

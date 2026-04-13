@@ -1,6 +1,7 @@
 [[language]]
 name = "rust"
-formatter = { command = "cargo", args = ["fmt"] }
+# formatter = { command = "cargo", args = ["fmt"] }
+auto-format = true
 
 [language-server.rust-analyzer.config.check]
 command = "clippy"

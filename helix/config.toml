@@ -2,10 +2,8 @@ theme = "varua"
 
 [editor]
 mouse = false
-# line-number = "relative"
 cursorline = true
 cursorcolumn = true
-auto-format = false
 end-of-line-diagnostics = "hint"
 bufferline = "multiple"
 
@@ -33,7 +31,6 @@ hidden = false
 '"' = '"'
 "'" = "'"
 '`' = '`'
-'<' = '>'
 
 [editor.indent-guides]
 render = true

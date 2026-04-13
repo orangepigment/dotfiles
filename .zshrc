@@ -1,5 +1,5 @@
 export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
-export EDITOR=micro
+export EDITOR=hx
 
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
@@ -18,6 +18,11 @@ function y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
+}
+
+# Fix filenames with whitespace handling
+function nucolored() {
+	nu -c "open $1 | nu-highlight"
 }
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

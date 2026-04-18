@@ -1,3 +1,5 @@
+setopt nobeep
+
 export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
 export EDITOR=hx
 
@@ -9,7 +11,7 @@ help() {
 
 alias git='LANG=en_GB git'
 
-alias eza="eza --git-ignore"
+alias eza="eza --icons --ignore-glob .git"
 
 # provides the ability to change the current working directory when exiting Yazi
 function y() {

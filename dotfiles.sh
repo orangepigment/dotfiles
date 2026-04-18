@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 DOTFILES=(
   "$HOME/.zshrc:.zshrc"
   "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty:ghostty.config"
@@ -9,7 +11,6 @@ DOTFILES=(
   "$HOME/.config/zed/keymap.json:zed/keymap.json"
   "$HOME/.config/macchina/macchina.toml:macchina/macchina.toml"
   "$HOME/.config/macchina/themes/Cadmium.toml:macchina/themes/Cadmium.toml"
-  "$HOME/.config/micro/settings.json:micro/settings.json"
   "$HOME/.config/helix:helix"
 )
 

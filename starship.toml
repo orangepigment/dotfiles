@@ -12,6 +12,9 @@ error_symbol = '[](bold red)'
 [shell]
 disabled = false
 
+[jobs]
+style = 'bold yellow'
+
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
@@ -23,6 +26,7 @@ min_time=5_000
 truncation_symbol = '…/'
 
 [git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
 symbol = ''
 
 [git_status]

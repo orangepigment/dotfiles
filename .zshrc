@@ -1,3 +1,4 @@
+setopt HIST_IGNORE_SPACE
 setopt nobeep
 
 export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
@@ -31,16 +32,38 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(starship init zsh)"
 
+# == FZF SECTION ==
+export FZF_DEFAULT_COMMAND='fd -I -L --type file --type dir --hidden --exclude .git --exclude target --color=always'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -TDa --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
+
+export FZF_ALT_C_COMMAND='fd -I -L --type dir --type symlink --hidden --exclude .git --exclude target --color=always'
+export FZF_ALT_C_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'"
+
+
+export FZF_CTRL_R_OPTS='--scheme=history'
+
+# --ansi is not recommended as default becasue of performance. Can be extracted to per command opt
+export FZF_DEFAULT_OPTS="--no-height --no-reverse --ansi"
+export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -TDa --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
+export FZF_COMPLETION_DIR_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'"
+
+# Use fd for listing path candidates.
+_fzf_compgen_path() {
+  fd -I -L --type file --type dir --hidden --exclude ".git" --exclude target --color=always . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd -I -L --type dir --type symlink --hidden --exclude ".git" --exclude target --color=always . "$1"
+}
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# HSTR configuration - add this to ~/.zshrc
-alias hh=hstr                    # hh to be alias for hstr
-setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
-export HSTR_TIOCSTI=y
-export HISTFILE=~/.zsh_history
+# == FZF SECTION END ===
 
 eval "$(zoxide init zsh)"
+
+[ -f "/Users/konstantin/.ghcup/env" ] && . "/Users/konstantin/.ghcup/env" # ghcup-env
 

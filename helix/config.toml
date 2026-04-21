@@ -1,4 +1,5 @@
-theme = "varua"
+# theme = "varua"
+theme = "github_dark_dimmed"
 
 [editor]
 mouse = false

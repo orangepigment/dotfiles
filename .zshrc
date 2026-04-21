@@ -1,9 +1,24 @@
 setopt HIST_IGNORE_SPACE
-setopt nobeep
+setopt GLOB_DOTS
+setopt NO_BEEP
 
 export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
 export EDITOR=hx
 
+# Autocompletion
+autoload -Uz compinit
+compinit
+
+# zstyle for completions
+zstyle ':completion:*' menu select
+
+# LS_COLORS are used by fd
+# The value is the default from 'man ls'
+export LS_COLORS="exfxcxdxbxegedabagacadah"
+
+# bat section
+# export BAT_THEME="Coldark-Dark"
+export BAT_THEME="ansi"
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
 help() {
@@ -25,10 +40,8 @@ function y() {
 
 # Fix filenames with whitespace handling
 function nucolored() {
-	nu -c "open $1 | nu-highlight"
+	nu -c "open ${1} | nu-highlight"
 }
-
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(starship init zsh)"
 
@@ -44,7 +57,7 @@ export FZF_ALT_C_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'
 export FZF_CTRL_R_OPTS='--scheme=history'
 
 # --ansi is not recommended as default becasue of performance. Can be extracted to per command opt
-export FZF_DEFAULT_OPTS="--no-height --no-reverse --ansi"
+export FZF_DEFAULT_OPTS="--color=base16 --no-height --no-reverse --ansi"
 export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -TDa --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
 export FZF_COMPLETION_DIR_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'"
 
@@ -63,7 +76,10 @@ source <(fzf --zsh)
 
 # == FZF SECTION END ===
 
-eval "$(zoxide init zsh)"
-
 [ -f "/Users/konstantin/.ghcup/env" ] && . "/Users/konstantin/.ghcup/env" # ghcup-env
+
+
+# Those commands must be at the end of .zshrc
+eval "$(zoxide init zsh)"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

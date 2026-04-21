@@ -4,23 +4,24 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Replace the '❯' symbol in the prompt with '➜'
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+[character]
+success_symbol = '[](bold green)'
 error_symbol = '[](bold red)'
 
 [shell]
 disabled = false
+nu_indicator = '[n](bold green)u'
+elvish_indicator = '[󰘧](bold green)'
 
 [jobs]
 style = 'bold yellow'
 
-# Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
 
 [cmd_duration]
-min_time=5_000
+disabled = true
+min_time=10_000
 
 [directory]
 truncation_symbol = '…/'
@@ -33,16 +34,43 @@ symbol = ''
 modified = 'M'
 
 [rust]
-format = '[$symbol($version )]($style)'
+# format = '[$symbol($version )]($style)'
+format = '[$symbol]($style)'
 
 [python]
-format = '[$symbol($version )]($style)'
+format = '[$symbol]($style)'
 
 [scala]
 disabled = true
-format = '[$symbol($version )]($style)'
+format = '[$symbol]($style)'
 symbol = ''
 
 [java]
-format = '[JVM ($version )]($style)'
+format = '[JVM]($style)'
 #symbol = ''
+
+[lua]
+format = 'via [$symbol]($style)'
+
+[haskell]
+format = 'via [$symbol]($style)'
+
+# Redundant modules
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[terraform]
+disabled = true
+
+[vcs]
+disabled = true
+
+[vcsh]
+disabled = true
+

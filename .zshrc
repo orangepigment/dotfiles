@@ -1,5 +1,13 @@
+# History
+export HISTSIZE=6000
+export SAVEHIST=5000
 setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+
 setopt GLOB_DOTS
+
 setopt NO_BEEP
 
 export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
@@ -11,6 +19,26 @@ compinit
 
 # zstyle for completions
 zstyle ':completion:*' menu select
+
+
+# Arrow keys access only local history
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+bindkey "^[[A" up-line-or-local-history
+
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
+bindkey "^[[B" down-line-or-local-history
+###
+
 
 # LS_COLORS are used by fd
 # The value is the default from 'man ls'
@@ -42,8 +70,6 @@ function y() {
 function nucolored() {
 	nu -c "open ${1} | nu-highlight"
 }
-
-eval "$(starship init zsh)"
 
 # == FZF SECTION ==
 export FZF_DEFAULT_COMMAND='fd -I -L --type file --type dir --hidden --exclude .git --exclude target --color=always'
@@ -81,5 +107,6 @@ source <(fzf --zsh)
 
 # Those commands must be at the end of .zshrc
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

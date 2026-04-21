@@ -33,3 +33,6 @@ formatter = { command = 'shfmt', args = ["-i", "4"] }
 name = "haskell"
 auto-format = true
 
+[[language]]
+name = "toml"
+file-types = ["toml", { glob = "config.ghostty"}]

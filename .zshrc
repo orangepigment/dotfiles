@@ -55,7 +55,11 @@ help() {
 
 alias git='LANG=en_GB git'
 
-alias eza="eza --icons --ignore-glob .git"
+alias edit-zshrc="$EDITOR ~/.zshrc"
+
+# eza section
+export EZA_ICONS_AUTO=enabled
+alias eza="eza --ignore-glob .git"
 
 # provides the ability to change the current working directory when exiting Yazi
 function y() {
@@ -66,26 +70,25 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# Fix filenames with whitespace handling
 function nucolored() {
-	nu -c "open ${1} | nu-highlight"
+	nu -c "open '${1}' | nu-highlight"
 }
 
 # == FZF SECTION ==
 export FZF_DEFAULT_COMMAND='fd -I -L --type file --type dir --hidden --exclude .git --exclude target --color=always'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -TDa --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
 
 export FZF_ALT_C_COMMAND='fd -I -L --type dir --type symlink --hidden --exclude .git --exclude target --color=always'
-export FZF_ALT_C_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'"
+export FZF_ALT_C_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always {}'"
 
 
 export FZF_CTRL_R_OPTS='--scheme=history'
 
 # --ansi is not recommended as default becasue of performance. Can be extracted to per command opt
 export FZF_DEFAULT_OPTS="--color=base16 --no-height --no-reverse --ansi"
-export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -TDa --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
-export FZF_COMPLETION_DIR_OPTS="--preview 'eza -TDa --ignore-glob .git --color=always {}'"
+export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git --color=always {}; else bat -n --color=always {}; fi'"
+export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always {}'"
 
 # Use fd for listing path candidates.
 _fzf_compgen_path() {

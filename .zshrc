@@ -56,6 +56,7 @@ help() {
 alias git='LANG=en_GB git'
 
 alias edit-zshrc="$EDITOR ~/.zshrc"
+alias reload-zshrc="source ~/.zshrc"
 
 # eza section
 export EZA_ICONS_AUTO=enabled

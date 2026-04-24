@@ -59,6 +59,8 @@ brew "shfmt"
 brew "starship"
 # Program that allows you to count code, quickly
 brew "tokei"
+# TUI and CLI dual pane markdown viewer
+brew "treemd"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Friendly and fast tool for sending HTTP requests

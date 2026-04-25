@@ -12,6 +12,7 @@ error_symbol = '[](bold red)'
 disabled = false
 nu_indicator = '[n](bold green)u'
 elvish_indicator = '[󰘧](bold green)'
+fish_indicator = '[󰈺](bold green)'
 
 [jobs]
 style = 'bold yellow'

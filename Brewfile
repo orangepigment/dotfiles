@@ -49,6 +49,8 @@ brew "procs"
 brew "ripgrep"
 # Interactive find and replace in the terminal
 brew "scooter"
+# Intuitive find & replace CLI
+brew "sd"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
@@ -57,6 +59,8 @@ brew "shellcheck"
 brew "shfmt"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Log file highlighter
+brew "tailspin"
 # Program that allows you to count code, quickly
 brew "tokei"
 # TUI and CLI dual pane markdown viewer
@@ -79,6 +83,10 @@ brew "dart-lang/dart/dart", link: false
 brew "dart-lang/dart/dart@2.19", link: true
 # Framework used in the development of applications and games
 cask "adobe-air"
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-mononoki-nerd-font"
+cask "font-symbols-only-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Open Source Multimedia Framework

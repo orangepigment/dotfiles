@@ -6,6 +6,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 
+# Expansions
 setopt GLOB_DOTS
 
 setopt NO_BEEP
@@ -19,7 +20,7 @@ export LS_COLORS='di=34:ln=36:so=31:pi=33:ex=32'
 # For ls
 export LSCOLORS="exgxbxDxcxegedabagacadah"
 
-# Autocompletion
+# Autocompletion section
 FPATH="$HOME/.docker/completions:$FPATH"
 autoload -Uz compinit
 compinit
@@ -30,6 +31,13 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}%B-- %d --%b%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:ssh:*:users' ignored-patterns '_*' # Ignore system users starting with _
+###
+
+# Keybindings section
+# ZLE custom keybindings
+autoload -Uz edit-command-line
+zle -N edit-command-line # Install widget
+bindkey "^[e" edit-command-line # Alt-e
 
 # Arrow keys access only local history
 up-line-or-local-history() {
@@ -49,8 +57,18 @@ zle -N down-line-or-local-history
 bindkey "^[[B" down-line-or-local-history
 ###
 
+# Aliases and aliasing functions
+alias git='LANG=en_GB git'
+
+alias edit-zshrc="$EDITOR ~/.zshrc"
+alias reload-zshrc="source ~/.zshrc"
+
+zshfmt() {
+    shfmt -ln zsh --indent 4 "$@"
+}
+###
+
 # bat section
-# export BAT_THEME="Coldark-Dark"
 export BAT_THEME="ansi"
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
@@ -59,12 +77,6 @@ help() {
 }
 ###
 
-# Other aliases
-alias git='LANG=en_GB git'
-
-alias edit-zshrc="$EDITOR ~/.zshrc"
-alias reload-zshrc="source ~/.zshrc"
-
 # eza section
 export EZA_ICONS_AUTO=enabled
 alias eza="eza --ignore-glob .git"
@@ -72,15 +84,15 @@ alias eza="eza --ignore-glob .git"
 
 # provides the ability to change the current working directory when exiting Yazi
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
 }
 
 function nucolored() {
-	nu -c "open '${1}' | nu-highlight"
+    nu -c "open '${1}' | nu-highlight"
 }
 
 # == FZF SECTION ==
@@ -91,22 +103,21 @@ export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git
 export FZF_ALT_C_COMMAND='fd -I -L --type dir --type symlink --hidden --exclude .git --exclude target --color=always'
 export FZF_ALT_C_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always --line-range=:200 {}'"
 
-
 export FZF_CTRL_R_OPTS='--style=full'
 
-# --ansi is not recommended as default becasue of performance. Can be extracted to per command opt
+# --ansi is not recommended as default because of performance. Can be extracted to per command opt
 export FZF_DEFAULT_OPTS="--color=base16 --no-height --no-reverse --ansi"
 export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
 export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always {}'"
 
 # Use fd for listing path candidates.
 _fzf_compgen_path() {
-  fd -I -L --type file --type dir --hidden --exclude ".git" --exclude target --color=always . "$1"
+    fd -I -L --type file --type dir --hidden --exclude ".git" --exclude target --color=always . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd -I -L --type dir --type symlink --hidden --exclude ".git" --exclude target --color=always . "$1"
+    fd -I -L --type dir --type symlink --hidden --exclude ".git" --exclude target --color=always . "$1"
 }
 
 # Set up fzf key bindings and fuzzy completion
@@ -120,4 +131,3 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(zsh-patina activate)"
-

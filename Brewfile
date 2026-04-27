@@ -38,8 +38,6 @@ brew "imagemagick"
 brew "jq"
 # System information fetcher, with an emphasis on performance and minimalism
 brew "macchina"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node@22"
 # Modern shell for the GitHub era
 brew "nushell"
 # Command-line tool to generate, analyze, convert and manipulate colors
@@ -50,8 +48,6 @@ brew "poppler"
 brew "procs"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Interactive find and replace in the terminal
-brew "scooter"
 # Intuitive find & replace CLI
 brew "sd"
 # 7-Zip is a file archiver with a high compression ratio
@@ -76,8 +72,6 @@ brew "viu"
 brew "xh"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
-# Pluggable terminal workspace, with terminal multiplexer as the base feature
-brew "zellij"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # SDK
@@ -90,6 +84,7 @@ brew "michel-kraemer/zsh-patina/zsh-patina"
 cask "adobe-air"
 cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+cask "font-mononoki"
 cask "font-mononoki-nerd-font"
 cask "font-symbols-only-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration

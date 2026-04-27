@@ -30,7 +30,6 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}%B-- %d --%b%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:ssh:*:users' ignored-patterns '_*' # Ignore system users starting with _
-# zstyle ':completion:*' complete-options true
 
 # Arrow keys access only local history
 up-line-or-local-history() {
@@ -58,7 +57,9 @@ alias bathelp='bat --plain --language=help'
 help() {
     "$@" --help 2>&1 | bathelp
 }
+###
 
+# Other aliases
 alias git='LANG=en_GB git'
 
 alias edit-zshrc="$EDITOR ~/.zshrc"
@@ -67,6 +68,7 @@ alias reload-zshrc="source ~/.zshrc"
 # eza section
 export EZA_ICONS_AUTO=enabled
 alias eza="eza --ignore-glob .git"
+###
 
 # provides the ability to change the current working directory when exiting Yazi
 function y() {
@@ -114,9 +116,8 @@ source <(fzf --zsh)
 
 [ -f "/Users/konstantin/.ghcup/env" ] && . "/Users/konstantin/.ghcup/env" # ghcup-env
 
-
 # Those commands must be at the end of .zshrc
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(zsh-patina activate)"
 

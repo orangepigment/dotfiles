@@ -12,6 +12,7 @@ DOTFILES=(
   "$HOME/.config/macchina/macchina.toml:macchina/macchina.toml"
   "$HOME/.config/macchina/themes/Cadmium.toml:macchina/themes/Cadmium.toml"
   "$HOME/.config/helix:helix"
+  "$HOME/Library/Application Support/nushell/config.nu:nushell/config.nu"
 )
 
 copy_with_mkdir() {

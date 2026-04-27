@@ -1,4 +1,5 @@
 tap "dart-lang/dart"
+tap "michel-kraemer/zsh-patina"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Yet another cross-platform graphical process/system monitor
@@ -79,12 +80,12 @@ brew "yazi"
 brew "zellij"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Fish shell like syntax highlighting for zsh
-brew "zsh-syntax-highlighting"
 # SDK
 brew "dart-lang/dart/dart", link: false
 # Dart SDK
 brew "dart-lang/dart/dart@2.19", link: true
+# $ A blazingly fast Zsh syntax highlighter
+brew "michel-kraemer/zsh-patina/zsh-patina"
 # Framework used in the development of applications and games
 cask "adobe-air"
 cask "font-fira-code-nerd-font"

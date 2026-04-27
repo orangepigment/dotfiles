@@ -3,6 +3,8 @@ tap "dart-lang/dart"
 brew "bat"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
+# Human-friendly and fast alternative to cut and (sometimes) awk
+brew "choose-rust"
 # Tool for exploring each layer in a docker image
 brew "dive"
 # .NET Core
@@ -67,6 +69,8 @@ brew "tokei"
 brew "treemd"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Simple terminal image viewer written in Rust
+brew "viu"
 # Friendly and fast tool for sending HTTP requests
 brew "xh"
 # Blazing fast terminal file manager written in Rust, based on async I/O

@@ -8,48 +8,55 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     // AI and telemetry
-    "terminal": {
-        "font_family": "JetBrainsMono Nerd Font Mono"
-    },
-    "ui_font_family": "Inter",
-    "buffer_font_family": "JetBrains Mono",
-    "git_panel": {
-        "tree_view": true,
-    },
-    "notification_panel": {
-        "button": false,
+    "outline_panel": {
+        "dock": "left",
     },
     "disable_ai": true,
     "agent": {
+        "dock": "right",
         "enable_feedback": false,
         "enabled": false,
         "button": false,
     },
     "telemetry": {
-        "diagnostics": true,
+        "diagnostics": false,
         "metrics": false,
     },
     // Appearance
+    "terminal": {
+        "font_family": "Maple Mono NF",
+    },
+    "ui_font_family": "Inter",
     "ui_font_size": 15.0,
-    "buffer_font_size": 14.0,
+    "buffer_font_family": "Maple Mono NF",
+    "buffer_font_size": 13.0,
+    "buffer_font_features": {
+        "calt": true, // Ligatures
+    },
     "icon_theme": {
         "mode": "dark",
-        "light": "Zed (Default)",
+        "light": "JetBrains New UI Icons (Light)",
         "dark": "JetBrains New UI Icons (Dark)",
     },
     "theme": {
         "mode": "system",
         "light": "Darcula Dark - Okkano Version",
-        "dark": "Darcula Dark - Okkano Version",
+        "dark": "GitHub Dark Dimmed",
+    },
+    "git_panel": {
+        "dock": "left",
+        "tree_view": true,
     },
     "collaboration_panel": {
+        "dock": "left",
         "button": false,
     },
     "title_bar": {
-        "show_branch_icon": true,
+        // "show_branch_status_icon": true,
         "show_sign_in": false,
     },
     "project_panel": {
+        "dock": "left",
         "hide_hidden": false,
         "git_status_indicator": true,
     },
@@ -66,22 +73,17 @@
                 "property.comment.error": { "color": "#FFD230" },
             },
         },
+        "GitHub Dark Dimmed": {
+            "syntax": {
+                // For TODO  higlights
+                "constant.comment.todo": { "color": "#DAA520" },
+                "string.comment.info": { "color": "#DAA520" },
+                "keyword.comment.warn": { "color": "#DAA520" },
+                "property.comment.error": { "color": "#DAA520" },
+            },
+        },
         "Tiniri Dark": {
             "syntax": {
-                //"constant": { "color": "#CC7832" },
-                //"constant": { "color": "#D28450" },
-                //"function": { "color": "#938A80" },
-
-                "string": { "color": "#6A8759" },
-                "comment.doc": { "color": "#6A8759" },
-
-                //"type": { "color": "#89B482FF" },
-                "type": { "color": "#938A80" },
-
-                // "keyword": { "color": "#C49A31" },
-                "keyword": { "color": "#C49A31AA" },
-                //"variable": { "color": "#938A80" },
-
                 // For TODO  higlights
                 "constant.comment.todo": { "color": "#D2C232" },
                 "string.comment.info": { "color": "#D2C232" },
@@ -99,9 +101,6 @@
     },
     "text_rendering_mode": "grayscale",
     //"colorize_brackets": true,
-    "buffer_font_features": {
-        "calt": false, // Ligatures
-    },
     "inlay_hints": {
         "enabled": true,
         "show_type_hints": true,

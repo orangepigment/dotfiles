@@ -28,6 +28,8 @@ brew "git"
 brew "git-delta"
 # Blazing fast terminal-ui for git written in rust
 brew "gitui"
+# Ping, but with a graph
+brew "gping"
 # Post-modern modal text editor
 brew "helix"
 # Command-line benchmarking tool
@@ -82,8 +84,10 @@ brew "dart-lang/dart/dart@2.19", link: true
 brew "michel-kraemer/zsh-patina/zsh-patina"
 # Framework used in the development of applications and games
 cask "adobe-air"
-cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+cask "font-maple-mono-nf"
+cask "font-monaspace"
+cask "font-monaspace-nf"
 cask "font-mononoki"
 cask "font-mononoki-nerd-font"
 cask "font-symbols-only-nerd-font"

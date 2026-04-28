@@ -123,6 +123,12 @@ _fzf_compgen_dir() {
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+brew-search-install() {
+    # Outer parenthesis capturs output into an array
+    local selection=($(brew search "$@" | fzf -m))
+    brew install "${selection[@]}"
+}
+
 # == FZF SECTION END ===
 
 [ -f "/Users/konstantin/.ghcup/env" ] && . "/Users/konstantin/.ghcup/env" # ghcup-env

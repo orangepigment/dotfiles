@@ -32,6 +32,14 @@
     "buffer_font_size": 13.0,
     "buffer_font_features": {
         "calt": true, // Ligatures
+        "cv01": true, // Remove gaps
+        "cv62": true, // Alternative question
+        "cv32": true, // Alternative italic f
+        "cv34": true, // Alternative italic k
+        "cv35": true, // Alternative italic l
+        "cv36": true, // Alternative italic x
+        "ss03": false, // Disable Arbitrary tag
+        "ss06": true, // Break connected strokes between italic letters
     },
     "icon_theme": {
         "mode": "dark",

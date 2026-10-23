@@ -96,28 +96,32 @@ function nucolored() {
 }
 
 # == FZF SECTION ==
-export FZF_DEFAULT_COMMAND='fd -I -L --type file --type dir --hidden --exclude .git --exclude target --color=always'
+# fd -E is exclude pattern
+FD_EXCLUDE='-E .git -E target -E Library -E Applications -E .aspnet -E .cabal -E .cache -E .cargo -E .cups -E .dart -E .dart-tool -E .dartServer -E .docker -E .dotnet -E .ghcup -E .gradle -E .homebrew -E .ipython -E .ivy2 -E .local -E .metals -E .mill -E .npm -E .pub-cache -E .rustup -E .sbt -E .stack -E .terminfo -E .thumbnails -E .Trash -E .venv -E .wine -E .yandex'
+EZA_IGNORE='--ignore-glob "Applications|Library|.git|.aspnet|.cabal|.cache|.cargo|.cups|.dart|.dart-tool|.dartServer|.docker|.dotnet|.ghcup|.gradle|.homebrew|.ipython|.ivy2|.local|.metals|.mill|.npm|.pub-cache|.rustup|.sbt|.stack|.terminfo|.thumbnails|.Trash|.venv|.wine|.yandex"'
+export FZF_DEFAULT_COMMAND="fd -I -L --type file --type dir --hidden ${FD_EXCLUDE} --color=always"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGNORE} --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
 
-export FZF_ALT_C_COMMAND='fd -I -L --type dir --type symlink --hidden --exclude .git --exclude target --color=always'
-export FZF_ALT_C_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always --line-range=:200 {}'"
+export FZF_ALT_C_COMMAND="fd -I -L --type dir --type symlink --hidden ${FD_EXCLUDE} --color=always"
+export FZF_ALT_C_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
 
 export FZF_CTRL_R_OPTS='--style=full'
 
 # --ansi is not recommended as default because of performance. Can be extracted to per command opt
 export FZF_DEFAULT_OPTS="--color=base16 --no-height --no-reverse --ansi"
-export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta --ignore-glob .git --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
-export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta --ignore-glob .git --color=always {}'"
+export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGNORE} --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
+export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
 
 # Use fd for listing path candidates.
+# ${=var} enforces word splittings
 _fzf_compgen_path() {
-    fd -I -L --type file --type dir --hidden --exclude ".git" --exclude target --color=always . "$1"
+    fd -I -L --type file --type dir --hidden ${=FD_EXCLUDE} --color=always . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-    fd -I -L --type dir --type symlink --hidden --exclude ".git" --exclude target --color=always . "$1"
+    fd -I -L --type dir --type symlink --hidden ${=FD_EXCLUDE} --color=always . "$1"
 }
 
 # Set up fzf key bindings and fuzzy completion

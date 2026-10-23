@@ -38,7 +38,7 @@ save() {
     copy_with_mkdir "$destination" "$source"
   done
   
-  brew bundle dump -f --describe
+  brew bundle dump -f
   echo "Dotfiles and Brewmake saved"
 }
 

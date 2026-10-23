@@ -16,7 +16,7 @@ show = [
 	"OperatingSystem",
 	#"DesktopEnvironment",
 	#"WindowManager",
-	#"Resolution",
+	"Resolution",
 	"Backlight",
 	#"Packages",
 	"LocalIP",

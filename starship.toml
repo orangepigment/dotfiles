@@ -10,7 +10,8 @@ error_symbol = '[](bold red)'
 
 [shell]
 disabled = false
-# zsh_indicator = '[z](#f15a24)sh'
+# zsh_indicator = '[z](#eb421c)sh'
+zsh_indicator = '[z](bold yellow)sh'
 nu_indicator = '[n](bold green)u'
 elvish_indicator = '[󰘧](bold green)'
 fish_indicator = '[󰈺](bold green)'
@@ -56,6 +57,9 @@ format = 'via [$symbol]($style)'
 
 [haskell]
 format = 'via [$symbol]($style)'
+
+[elixir]
+symbol = '🧪 '
 
 # Redundant modules
 [aws]

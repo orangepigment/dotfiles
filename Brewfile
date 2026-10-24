@@ -15,6 +15,8 @@ brew "dust"
 brew "dysk"
 # Functional metaprogramming aware language built on Erlang VM
 brew "elixir"
+# Language Server and Debugger for Elixir
+brew "elixir-ls"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -33,6 +35,8 @@ brew "gping"
 brew "hck"
 # Post-modern modal text editor
 brew "helix"
+# Command-line hex viewer
+brew "hexyl"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Tools and libraries to manipulate images in select formats

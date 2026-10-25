@@ -35,7 +35,7 @@ save() {
     for dotfile in "${DOTFILES[@]}"; do
         # Strip ':' and everything after it
         system_files="${dotfile%%:*}"
-        # Strip everything up to and including ':' 
+        # Strip everything up to and including ':'
         repo_files="${dotfile##*:}"
         copy_with_mkdir "${system_files}" "${repo_files}"
     done
@@ -45,7 +45,7 @@ save() {
 }
 
 install() {
-    if [[ $(command -v brew) == "" ]]; then
+    if [[ -z $(command -v brew) ]]; then
         echo "Installing Homebrew"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         PATH="/opt/homebrew/bin:$PATH"
@@ -63,7 +63,7 @@ install() {
 show_help() {
     echo "Usage: ${script_name} ([-a] [-i]) | [-s] | [-h]"
     echo "  -i, --install   Install tools"
-    echo "  -a, --aply      Apply dotfiles"
+    echo "  -a, --apply      Apply dotfiles"
     echo "  -s, --save      Save dotfiles"
     echo "  -h, --help      Show this help menu"
 }
@@ -83,26 +83,25 @@ zparseopts -D -F -K - \
     {s,-save}=save \
     {h,-help}=help || show_help
 
-# Presence of options can be checked via (( $#option )).
-if (($#help)); then
+if [[ -n $help ]]; then
     show_help
     exit 0
 fi
 
-if (($#save)) && ( (($#apply)) || (($#install))); then
+if [[ -n $save && (-n $apply || -n $install) ]]; then
     echo "--save option is incompatible with --apply and --install options"
     show_help
     exit 1
 fi
 
-if (($#save)); then
+if [[ -n $save ]]; then
     save
 fi
 
-if (($#apply)); then
+if [[ -n $apply ]]; then
     apply
 fi
 
-if (($#install)); then
+if [[ -n $install ]]; then
     install
 fi

@@ -1,5 +1,4 @@
-tap "dart-lang/dart", trusted: true
-tap "michel-kraemer/zsh-patina", trusted: { formulae: ["zsh-patina"] }
+tap "dart-lang/dart"
 tap "sstadick/hck", trusted: { formulae: ["hck"] }
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"

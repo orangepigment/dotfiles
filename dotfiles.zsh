@@ -14,7 +14,9 @@ DOTFILES=(
     "$HOME/.config/macchina/macchina.toml:macchina/macchina.toml"
     "$HOME/.config/macchina/themes/Cadmium.toml:macchina/themes/Cadmium.toml"
     "$HOME/.config/helix:helix"
+    "$HOME/.config/delta/themes.gitconfig:delta/themes.gitconfig"
     "$HOME/Library/Application Support/nushell/config.nu:nushell/config.nu"
+    "$HOME/Code/netcat-http-server.zsh:scripts/netcat-http-server.zsh"
 )
 
 copy_with_mkdir() {
@@ -57,7 +59,35 @@ install() {
     echo "Installing brew packages"
     brew bundle
 
+    echo "Updating git config"
+    git config --global include.path '~/.config/delta/themes.gitconfig'
+
+    git config --global core.autocrlf input
+    git config --global core.editor hx
+    git config --global core.pager delta
+    git config --global init.defaultBranch main
+    git config --global merge.conflictStyle zdiff3
+
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global delta.features 'gruvmax-fang'
+    git config --global --comment 'use n and N to move between diff sections' delta.navigate 'true'
+    git config --global delta.line-numbers 'true'
+    git config --global delta.side-by-side 'true'
+    
     echo "Tools installed"
+}
+
+
+apply() {
+    for dotfile in "${DOTFILES[@]}"; do
+        # Strip ':' and everything after it
+        system_files="${dotfile%%:*}"
+        # Strip everything up to and including ':'
+        repo_files="${dotfile##*:}"
+        copy_with_mkdir "${repo_files}" "${system_files}"
+    done
+
+    echo "Dotfiles applied"
 }
 
 show_help() {

@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+script_name=$0
+
 DOTFILES=(
     "$HOME/.zshrc:.zshrc"
     "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty:ghostty.config"
@@ -59,7 +61,7 @@ install() {
 }
 
 show_help() {
-    echo "Usage: $0 ([-a] [-i]) | [-s] | [-h]"
+    echo "Usage: ${script_name} ([-a] [-i]) | [-s] | [-h]"
     echo "  -i, --install   Install tools"
     echo "  -a, --aply      Apply dotfiles"
     echo "  -s, --save      Save dotfiles"

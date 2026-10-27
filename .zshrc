@@ -21,7 +21,7 @@ export LS_COLORS='di=34:ln=36:so=31:pi=33:ex=32'
 export LSCOLORS="exgxbxDxcxegedabagacadah"
 
 # Autocompletion section
-FPATH="$HOME/.docker/completions:$FPATH"
+FPATH="$HOME/.completions:$HOME/.docker/completions:$FPATH"
 autoload -Uz compinit
 compinit
 
@@ -64,12 +64,12 @@ alias edit-zshrc="$EDITOR ~/.zshrc"
 alias reload-zshrc="source ~/.zshrc"
 
 zshfmt() {
-    shfmt -ln zsh --indent 4 "$@"
+    shfmt -ln zsh --indent 2 "$@"
 }
 ###
 
 # bat section
-export BAT_THEME="ansi"
+export BAT_THEME="gruvbox-dark"
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
 help() {
@@ -96,14 +96,12 @@ function nucolored() {
 }
 
 # == FZF SECTION ==
-# fd -E is exclude pattern
-FD_EXCLUDE='-E .git -E target -E Library -E Applications -E .aspnet -E .cabal -E .cache -E .cargo -E .cups -E .dart -E .dart-tool -E .dartServer -E .docker -E .dotnet -E .ghcup -E .gradle -E .homebrew -E .ipython -E .ivy2 -E .local -E .metals -E .mill -E .npm -E .pub-cache -E .rustup -E .sbt -E .stack -E .terminfo -E .thumbnails -E .Trash -E .venv -E .wine -E .yandex'
 EZA_IGNORE='--ignore-glob "Applications|Library|.git|.aspnet|.cabal|.cache|.cargo|.cups|.dart|.dart-tool|.dartServer|.docker|.dotnet|.ghcup|.gradle|.homebrew|.ipython|.ivy2|.local|.metals|.mill|.npm|.pub-cache|.rustup|.sbt|.stack|.terminfo|.thumbnails|.Trash|.venv|.wine|.yandex"'
-export FZF_DEFAULT_COMMAND="fd -I -L --type file --type dir --hidden ${FD_EXCLUDE} --color=always"
+export FZF_DEFAULT_COMMAND="fd --no-ignore-vcs -L --type file --type dir --hidden --color=always"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGNORE} --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
 
-export FZF_ALT_C_COMMAND="fd -I -L --type dir --type symlink --hidden ${FD_EXCLUDE} --color=always"
+export FZF_ALT_C_COMMAND="fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always"
 export FZF_ALT_C_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
 
 export FZF_CTRL_R_OPTS='--style=full'
@@ -114,14 +112,13 @@ export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGN
 export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
 
 # Use fd for listing path candidates.
-# ${=var} enforces word splittings
 _fzf_compgen_path() {
-    fd -I -L --type file --type dir --hidden ${=FD_EXCLUDE} --color=always . "$1"
+    fd --no-ignore-vcs -L --type file --type dir --hidden --color=always . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-    fd -I -L --type dir --type symlink --hidden ${=FD_EXCLUDE} --color=always . "$1"
+    fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always . "$1"
 }
 
 # Set up fzf key bindings and fuzzy completion
@@ -141,3 +138,8 @@ brew-search-install() {
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(zsh-patina activate)"
+
+# Remove duplicate entries
+typeset -U PATH
+typeset -U FPATH
+

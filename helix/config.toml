@@ -1,5 +1,6 @@
 # theme = "varua"
-theme = "github_dark_dimmed"
+# theme = "github_dark_dimmed"
+theme = "ayu_dark"
 
 [editor]
 mouse = false
@@ -48,3 +49,5 @@ e = [
   ':redraw',
 ]
 
+# Print the current line's git blame information to the statusline.
+B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"

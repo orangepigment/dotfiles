@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-script_name=$0
+readonly script_name=$0
 
-DOTFILES=(
+readonly DOTFILES=(
   "$HOME/.zshrc:.zshrc"
   "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty:ghostty.config"
   "$HOME/Library/Application Support/nushell/config.nu:nushell/config.nu"
@@ -27,6 +27,17 @@ DOTFILES=(
   "$HOME/Code/scripts/save-zsh-keybindings.nu:scripts/save-zsh-keybindings.nu"
 )
 
+readonly COMPL_DIR="${HOME}/.completions"
+
+readonly zsh_completions_base_url="https://raw.githubusercontent.com/zsh-users/zsh-completions/refs/heads/master/src/"
+
+readonly completion_urls=(
+  "${zsh_completions_base_url}_nu"
+  "${zsh_completions_base_url}_sbt"
+  "${zsh_completions_base_url}_scala"
+  "https://raw.githubusercontent.com/mosquito/docker-compose/refs/heads/master/contrib/completion/zsh/_docker-compose"
+)
+
 copy_with_mkdir() {
   source="$1"
   destination="$2"
@@ -42,7 +53,7 @@ copy_with_mkdir() {
 }
 
 save() {
-  for dotfile in "${DOTFILES[@]}"; do
+  for dotfile in ${DOTFILES}; do
     # Strip ':' and everything after it
     system_files="${dotfile%%:*}"
     # Strip everything up to and including ':'
@@ -82,11 +93,36 @@ install() {
   git config --global delta.line-numbers 'true'
   git config --global delta.side-by-side 'true'
 
+  git config --global alias.st status
+
+  echo "Extra completions setup"
+  setup_extra_completions
+
   echo "Tools installed"
 }
 
+setup_extra_completions() {
+  mkdir -p ${COMPL_DIR}
+
+  # Download comletions
+  for url in ${completion_urls}; do
+    # :t keeps only the trailing path part
+    # print -u2 prints to stderr
+    curl --fail -o "${COMPL_DIR}${url:t}" ${url} || print -u2 "warn: Failed to download completions from ${url}"
+  done
+
+  # Generate completions
+  if [[ -n $(command -v leaf) ]]; then
+    leaf --auto-complete zsh:dump >"${COMPL_DIR}/_leaf" || print -u2 "warn: Failed to setup completions for leaf"
+  fi
+
+  if [[ -n $(command -v delta) ]]; then
+    delta --generate-completion zsh >"${COMPL_DIR}/_delta" || print -u2 "warn: Failed to setup completions for delta"
+  fi
+}
+
 apply() {
-  for dotfile in "${DOTFILES[@]}"; do
+  for dotfile in ${DOTFILES}; do
     # Strip ':' and everything after it
     system_files="${dotfile%%:*}"
     # Strip everything up to and including ':'

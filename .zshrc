@@ -68,6 +68,8 @@ zshfmt() {
 }
 ###
 
+export LEAF_THEME="gruvbox"
+
 # bat section
 export BAT_THEME="gruvbox-dark"
 export MANPAGER="col -bx | bat -p -l man"

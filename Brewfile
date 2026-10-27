@@ -1,5 +1,7 @@
 tap "cablehead/tap"
 tap "dart-lang/dart"
+tap "ewhauser/tap"
+tap "mijowi/tap"
 tap "sstadick/hck", trusted: { formulae: ["hck"] }
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -45,6 +47,8 @@ brew "hyperfine"
 brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Terminal Markdown previewer with a GUI-like experience
+brew "leaf-markdown-viewer"
 # System information fetcher, with an emphasis on performance and minimalism
 brew "macchina"
 # Language Server Protocol for Markdown
@@ -99,6 +103,8 @@ brew "cablehead/tap/http-nu", trusted: true
 brew "dart-lang/dart/dart", link: false, trusted: true
 # Dart SDK
 brew "dart-lang/dart/dart@2.19", link: true, trusted: true
+# A fast shell script linter
+brew "ewhauser/tap/shuck-cli", trusted: true
 # Framework used in the development of applications and games
 cask "adobe-air"
 cask "font-jetbrains-mono-nerd-font"

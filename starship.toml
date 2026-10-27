@@ -1,65 +1,65 @@
 # Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
 # Inserts a blank line between shell prompts
 add_newline = true
 
 [character]
-success_symbol = '[](bold green)'
-error_symbol = '[](bold red)'
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
 
 [shell]
 disabled = false
 # zsh_indicator = '[z](#eb421c)sh'
-zsh_indicator = '[z](bold yellow)sh'
-nu_indicator = '[n](bold green)u'
-elvish_indicator = '[󰘧](bold green)'
-fish_indicator = '[󰈺](bold green)'
+zsh_indicator = "[z](bold yellow)sh"
+nu_indicator = "[n](bold green)u"
+elvish_indicator = "[󰘧](bold green)"
+fish_indicator = "[󰈺](bold green)"
 
 [jobs]
-style = 'bold yellow'
+style = "bold yellow"
 
 [package]
 disabled = true
 
 [cmd_duration]
 disabled = true
-min_time=10_000
+min_time = 10_000
 
 [directory]
-truncation_symbol = '…/'
+truncation_symbol = "…/"
 
 [git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style) '
-symbol = ''
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = ""
 
 [git_status]
-modified = 'M'
+modified = "M"
 
 [rust]
 # format = '[$symbol($version )]($style)'
-format = '[$symbol]($style)'
+format = "[$symbol]($style)"
 
 [python]
-format = '[$symbol]($style)'
+format = "[$symbol]($style)"
 
 [scala]
 disabled = true
-format = '[$symbol]($style)'
-symbol = ''
+format = "[$symbol]($style)"
+symbol = ""
 
 [java]
-format = '[JVM]($style)'
-#symbol = ''
+format = "[JVM]($style)"
+# symbol = ''
 
 [lua]
-format = 'via [$symbol]($style)'
+format = "via [$symbol]($style)"
 
 [haskell]
-format = 'via [$symbol]($style)'
+format = "via [$symbol]($style)"
 
 [elixir]
-symbol = '🧪 '
+symbol = "🧪 "
 
 # Redundant modules
 [aws]

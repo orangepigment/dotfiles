@@ -1,10 +1,14 @@
 [[language]]
 name = "rust"
-# formatter = { command = "cargo", args = ["fmt"] }
 auto-format = true
 
 [language-server.rust-analyzer.config.check]
 command = "clippy"
+
+[[language]]
+name = "scala"
+formatter = { command = "scalafmt", args = ["--stdin"] }
+auto-format = true
 
 [[language]]
 name = "python"
@@ -26,8 +30,9 @@ args = ["ruff", "server"]
 
 [[language]]
 name = "bash"
-indent = { tab-width = 2, unit = "    " }
-formatter = { command = 'shfmt', args = ["-i", "2"] }
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "shfmt", args = ["-i", "2"] }
+auto-format = true
 
 [[language]]
 name = "haskell"
@@ -35,4 +40,15 @@ auto-format = true
 
 [[language]]
 name = "toml"
-file-types = ["toml", { glob = "config.ghostty"}]
+file-types = ["toml", { glob = "config.ghostty" }]
+auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
+auto-format = true

@@ -1,3 +1,4 @@
+tap "cablehead/tap"
 tap "dart-lang/dart"
 tap "sstadick/hck", trusted: { formulae: ["hck"] }
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -8,6 +9,8 @@ brew "bottom"
 brew "dive"
 # .NET Core
 brew "dotnet"
+# Pluggable and configurable code formatting platform written in Rust
+brew "dprint"
 # More intuitive version of du in rust
 brew "dust"
 # Linux utility to get information on filesystems, like df but better
@@ -90,6 +93,8 @@ brew "yazi"
 brew "zoxide"
 # Blazingly fast Zsh syntax highlighter
 brew "zsh-patina"
+# The surprisingly performant, Datastar-ready, Nushell-scriptable HTTP server that fits in your back pocket
+brew "cablehead/tap/http-nu", trusted: true
 # SDK
 brew "dart-lang/dart/dart", link: false, trusted: true
 # Dart SDK

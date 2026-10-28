@@ -63,6 +63,15 @@ alias git='LANG=en_GB git'
 alias edit-zshrc="$EDITOR ~/.zshrc"
 alias reload-zshrc="source ~/.zshrc"
 
+alias cd="z"
+hike() {
+    if [[ ${#} -ne 1 ]]; then
+        echo "Wrong number of arguments. Exactly one directory path expected!"
+        return 1
+    fi
+    mkdir -p "${1}" && z "${1}"
+}
+
 zshfmt() {
     shfmt -ln zsh --indent 2 "$@"
 }

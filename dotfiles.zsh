@@ -27,7 +27,7 @@ readonly DOTFILES=(
   "$HOME/Code/scripts/save-zsh-keybindings.nu:scripts/save-zsh-keybindings.nu"
 )
 
-readonly COMPL_DIR="${HOME}/.completions"
+readonly COMPL_DIR="${HOME}/.completions/"
 
 readonly zsh_completions_base_url="https://raw.githubusercontent.com/zsh-users/zsh-completions/refs/heads/master/src/"
 

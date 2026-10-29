@@ -17,6 +17,10 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 $env.config.buffer_editor = "hx"
+$env.config.edit_mode = 'helix' # helix mode for shell Reedline editor
+
+$env.config.history.file_format = "sqlite"
+$env.config.history.isolation = true
 
 alias fg = job unfreeze
 

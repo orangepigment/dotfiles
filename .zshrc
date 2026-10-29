@@ -22,7 +22,7 @@ export LSCOLORS="exgxbxDxcxegedabagacadah"
 
 # Autocompletion section
 FPATH="$HOME/.completions:$HOME/.docker/completions:$FPATH"
-autoload -Uz compinit
+autoload -U compinit
 compinit
 
 # zstyle for completions
@@ -35,23 +35,23 @@ zstyle ':completion:*:ssh:*:users' ignored-patterns '_*' # Ignore system users s
 
 # Keybindings section
 # ZLE custom keybindings
-autoload -Uz edit-command-line
-zle -N edit-command-line # Install widget
+autoload -U edit-command-line
+zle -N edit-command-line        # Install widget
 bindkey "^[e" edit-command-line # Alt-e
 
 # Arrow keys access only local history
 up-line-or-local-history() {
-    zle set-local-history 1
-    zle up-line-or-history
-    zle set-local-history 0
+  zle set-local-history 1
+  zle up-line-or-history
+  zle set-local-history 0
 }
 zle -N up-line-or-local-history
 bindkey "^[[A" up-line-or-local-history
 
 down-line-or-local-history() {
-    zle set-local-history 1
-    zle down-line-or-history
-    zle set-local-history 0
+  zle set-local-history 1
+  zle down-line-or-history
+  zle set-local-history 0
 }
 zle -N down-line-or-local-history
 bindkey "^[[B" down-line-or-local-history
@@ -65,15 +65,15 @@ alias reload-zshrc="source ~/.zshrc"
 
 alias cd="z"
 hike() {
-    if [[ ${#} -ne 1 ]]; then
-        echo "Wrong number of arguments. Exactly one directory path expected!"
-        return 1
-    fi
-    mkdir -p "${1}" && z "${1}"
+  if [[ ${#} -ne 1 ]]; then
+    echo "Wrong number of arguments. Exactly one directory path expected!"
+    return 1
+  fi
+  mkdir -p "${1}" && z "${1}"
 }
 
 zshfmt() {
-    shfmt -ln zsh --indent 2 "$@"
+  shfmt -ln zsh --indent 2 "$@"
 }
 ###
 
@@ -84,7 +84,7 @@ export BAT_THEME="gruvbox-dark"
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
+  "$@" --help 2>&1 | bathelp
 }
 ###
 
@@ -95,15 +95,15 @@ alias eza="eza --ignore-glob .git"
 
 # provides the ability to change the current working directory when exiting Yazi
 function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    command yazi "$@" --cwd-file="$tmp"
-    IFS= read -r -d '' cwd <"$tmp"
-    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-    rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
 }
 
 function nucolored() {
-    nu -c "open '${1}' | nu-highlight"
+  nu -c "open '${1}' | nu-highlight"
 }
 
 # == FZF SECTION ==
@@ -124,21 +124,21 @@ export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always 
 
 # Use fd for listing path candidates.
 _fzf_compgen_path() {
-    fd --no-ignore-vcs -L --type file --type dir --hidden --color=always . "$1"
+  fd --no-ignore-vcs -L --type file --type dir --hidden --color=always . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-    fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always . "$1"
+  fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always . "$1"
 }
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
 brew-search-install() {
-    # Outer parenthesis capturs output into an array
-    local selection=($(brew search "$@" | fzf -m))
-    brew install "${selection[@]}"
+  # Outer parenthesis capturs output into an array
+  local selection=($(brew search "$@" | fzf -m))
+  brew install "${selection[@]}"
 }
 
 # == FZF SECTION END ===
@@ -153,4 +153,3 @@ eval "$(zsh-patina activate)"
 # Remove duplicate entries
 typeset -U PATH
 typeset -U FPATH
-

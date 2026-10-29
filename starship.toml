@@ -49,8 +49,8 @@ format = "[$symbol]($style)"
 symbol = ""
 
 [java]
+disabled = true
 format = "[JVM]($style)"
-# symbol = ''
 
 [lua]
 format = "via [$symbol]($style)"
@@ -80,3 +80,15 @@ disabled = true
 [vcsh]
 disabled = true
 
+# Custom sbt and scala modules
+[custom.sbt]
+command = "bat project/build.properties | rg 'sbt.version' | sd '\\s' '' | hck -Ld '=' -f 2"
+detect_files = ["build.sbt"]
+style = "bold white"
+format = " sbt [$output]($style)"
+
+[custom.scala]
+command = "bat build.sbt | rg 'scalaVersion' | sd '\\s|\"' '' | hck -Ld '=' -f 2"
+detect_files = ["build.sbt"]
+style = "bold white"
+format = " scala [$output]($style)"

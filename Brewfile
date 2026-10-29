@@ -1,7 +1,6 @@
 tap "cablehead/tap"
 tap "dart-lang/dart"
 tap "ewhauser/tap"
-tap "mijowi/tap"
 tap "sstadick/hck", trusted: { formulae: ["hck"] }
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"

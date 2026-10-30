@@ -40,9 +40,6 @@ modified = "M"
 # format = '[$symbol($version )]($style)'
 format = "[$symbol]($style)"
 
-[python]
-format = "[$symbol]($style)"
-
 [scala]
 disabled = true
 format = "[$symbol]($style)"

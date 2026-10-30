@@ -34,7 +34,7 @@ readonly zsh_completions_base_url="https://raw.githubusercontent.com/zsh-users/z
 readonly completion_urls=(
   "${zsh_completions_base_url}_nu"
   "${zsh_completions_base_url}_sbt"
-  "${zsh_completions_base_url}_scala"
+  "${zsh_completions_base_url}_shellcheck"
   "https://raw.githubusercontent.com/mosquito/docker-compose/refs/heads/master/contrib/completion/zsh/_docker-compose"
 )
 

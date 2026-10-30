@@ -1,3 +1,6 @@
+[schema]
+enabled = false
+
 [schema.format.rules]
 array-values-order.enabled = false
 table-keys-order.enabled = false

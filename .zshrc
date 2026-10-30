@@ -21,7 +21,7 @@ export LS_COLORS='di=34:ln=36:so=31:pi=33:ex=32'
 export LSCOLORS="exgxbxDxcxegedabagacadah"
 
 # Autocompletion section
-FPATH="$HOME/.completions:$HOME/.docker/completions:$FPATH"
+FPATH="$HOME/Library/Application Support/ScalaCli/completions/zsh:$HOME/.docker/completions:$HOME/.completions:$FPATH"
 autoload -U compinit
 compinit
 

@@ -24,7 +24,7 @@ readonly DOTFILES=(
   "$HOME/Code/scripts/dump-helix-health.nu:scripts/dump-helix-health.nu"
   "$HOME/Code/scripts/netcat-http-server.zsh:scripts/netcat-http-server.zsh"
   "$HOME/Code/scripts/print-ansi-colors.zsh:scripts/print-ansi-colors.zsh"
-  "$HOME/Code/scripts/save-zsh-keybindings.nu:scripts/save-zsh-keybindings.nu"
+  "$HOME/Code/scripts/dump-zsh-keybindings.nu:scripts/dump-zsh-keybindings.nu"
 )
 
 readonly COMPL_DIR="${HOME}/.completions/"

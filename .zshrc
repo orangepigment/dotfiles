@@ -11,7 +11,7 @@ setopt GLOB_DOTS
 
 setopt NO_BEEP
 
-export PATH="/opt/homebrew/opt/node@22/bin:/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
+export PATH="/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
 export EDITOR=hx
 
 # Colors are based on https://github.com/eza-community/eza-themes/blob/main/themes/default.yml
@@ -33,6 +33,10 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:ssh:*:users' ignored-patterns '_*' # Ignore system users starting with _
 ###
 
+# run-help override, unalias will print error on sourcig zshrc when alias is alread yremoved, so dev-null stderr
+unalias run-help 2>/dev/null
+autoload -U run-help
+
 # Keybindings section
 # ZLE custom keybindings
 autoload -U edit-command-line
@@ -42,7 +46,7 @@ bindkey "^[e" edit-command-line # Alt-e
 # Arrow keys access only local history
 up-line-or-local-history() {
   zle set-local-history 1
-  zle up-line-or-history
+  zle up-line-or-search
   zle set-local-history 0
 }
 zle -N up-line-or-local-history
@@ -50,7 +54,7 @@ bindkey "^[[A" up-line-or-local-history
 
 down-line-or-local-history() {
   zle set-local-history 1
-  zle down-line-or-history
+  zle down-line-or-search
   zle set-local-history 0
 }
 zle -N down-line-or-local-history

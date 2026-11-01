@@ -27,6 +27,9 @@ fpath=("$HOME/Library/Application Support/ScalaCli/completions/zsh" $HOME/.docke
 autoload -U compinit
 compinit
 
+# Disable autocomplete for java
+compdef -d java
+
 # zstyle for completions
 zstyle ':completion:*' menu select # interactive #search
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}%B-- %d --%b%f'

@@ -18,6 +18,7 @@ readonly DOTFILES=(
   "$HOME/.config/delta/themes.gitconfig:delta/themes.gitconfig"
   "$HOME/.config/tombi/config.toml:tombi/config.toml"
   "$HOME/.config/dprint/dprint.jsonc:dprint/dprint.jsonc"
+  "$HOME/.config/leaf/themes/gruvbox.toml:leaf/themes/gruvbox.toml"
   "$HOME/Code/scripts/bat-theme-preview.sh:scripts/bat-theme-preview.sh"
   "$HOME/Code/scripts/delta-custom-theme-preview.zsh:scripts/delta-custom-theme-preview.zsh"
   "$HOME/Code/scripts/delta-theme-preview.zsh:scripts/delta-theme-preview.zsh"

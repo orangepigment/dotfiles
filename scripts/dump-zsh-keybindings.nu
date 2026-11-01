@@ -1,5 +1,6 @@
 #!/usr/bin/env nu
 
+# Codes obtained via zkbd
 let keys = {
   F1: '^[OP'
   F2: '^[OQ'
@@ -26,8 +27,6 @@ let keys = {
   Right: '^[[C'
 } | transpose key raw_key
 
-let tmp_dump = 'raw_dump.tmp'
-
 def replace_keys [binding: string] {
   $keys
   | reduce --fold $binding {|it, acc| $acc | str replace $it.raw_key $it.key }
@@ -35,15 +34,13 @@ def replace_keys [binding: string] {
   | str replace '^' 'Ctrl+'
 }
 
+# TODO: add support for format and filename choice
+# Also move -f to args
 def main [] {
-  # Dump to a file as a workaround to broken pipe problem
-  zsh -ic $"bindkey -L >($tmp_dump); exit"
-
-  open $tmp_dump
+  zsh -ic "bindkey -L"
   | lines
   | each {replace_keys $in}
   | parse --regex "(?<command>bindkey(?: -[a-zA-z]+)*) (?<binding>".+") (?<action>.+)"
-  | save -f zsh_keybindings.nuon
-
-  rm $tmp_dump
+  | to md
+  | save -f zsh_keybindings.md
 }

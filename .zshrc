@@ -20,8 +20,10 @@ export LS_COLORS='di=34:ln=36:so=31:pi=33:ex=32'
 # For ls
 export LSCOLORS="exgxbxDxcxegedabagacadah"
 
+# Setup fpath for autoloading
+fpath=("$HOME/Library/Application Support/ScalaCli/completions/zsh" $HOME/.docker/completions $HOME/.completions $fpath)
+
 # Autocompletion section
-FPATH="$HOME/Library/Application Support/ScalaCli/completions/zsh:$HOME/.docker/completions:$HOME/.completions:$FPATH"
 autoload -U compinit
 compinit
 
@@ -68,7 +70,7 @@ alias edit-zshrc="$EDITOR ~/.zshrc"
 alias reload-zshrc="source ~/.zshrc"
 
 alias cd="z"
-hike() {
+function hike() {
   if [[ ${#} -ne 1 ]]; then
     echo "Wrong number of arguments. Exactly one directory path expected!"
     return 1
@@ -156,4 +158,4 @@ eval "$(zsh-patina activate)"
 
 # Remove duplicate entries
 typeset -U PATH
-typeset -U FPATH
+typeset -U fpath

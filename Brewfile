@@ -122,3 +122,4 @@ cask "gstreamer-runtime"
 cask "numi"
 # Toolbox companion for QMK Firmware
 cask "qmk-toolbox"
+cargo "nufmt", source: "https://github.com/nushell/nufmt"

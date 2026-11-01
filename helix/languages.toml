@@ -36,6 +36,12 @@ formatter = { command = "shfmt", args = ["-i", "2"] }
 auto-format = true
 
 [[language]]
+name = "nu"
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "nufmt", args = ["--stdin"] }
+auto-format = true
+
+[[language]]
 name = "haskell"
 auto-format = true
 

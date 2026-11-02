@@ -18,8 +18,6 @@ brew "dust"
 brew "dysk"
 # Functional metaprogramming aware language built on Erlang VM
 brew "elixir"
-# Language Server and Debugger for Elixir
-brew "elixir-ls"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find

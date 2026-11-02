@@ -41,6 +41,20 @@ indent = { tab-width = 2, unit = "  " }
 formatter = { command = "nufmt", args = ["--stdin"] }
 auto-format = true
 
+[language-server.expert]
+command = "expert"
+args = ["--stdio"]
+
+[[language]]
+name = "elixir"
+language-servers = ["expert"]
+formatter = { command = "mix", args = ["format", "--no-compile", "-"] }
+auto-format = true
+
+[[language]]
+name = "heex"
+language-servers = ["expert"]
+
 [[language]]
 name = "haskell"
 auto-format = true

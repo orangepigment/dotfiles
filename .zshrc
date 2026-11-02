@@ -11,7 +11,7 @@ setopt GLOB_DOTS
 
 setopt NO_BEEP
 
-export PATH="/Users/konstantin/Library/Application Support/Coursier/bin/metals:$PATH"
+export PATH="$HOME/Library/Application Support/Coursier/bin/metals:$HOME/.local/bin:$PATH"
 export EDITOR=hx
 
 # Colors are based on https://github.com/eza-community/eza-themes/blob/main/themes/default.yml

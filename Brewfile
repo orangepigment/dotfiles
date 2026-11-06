@@ -6,6 +6,8 @@ tap "sstadick/hck", trusted: { formulae: ["hck"] }
 brew "bat"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
+# Code-aware spell checker language server
+brew "codebook-lsp"
 # Tool for exploring each layer in a docker image
 brew "dive"
 # .NET Core

@@ -1,3 +1,9 @@
+[language-server.codebook]
+command = "codebook-lsp"
+args = ["serve"]
+# checking while typing can be distracting; option requires v0.3.20
+config = { checkWhileTyping = false }
+
 [[language]]
 name = "rust"
 auto-format = true
@@ -66,6 +72,7 @@ auto-format = true
 
 [[language]]
 name = "markdown"
+language-servers = ["marksman", "codebook"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 auto-format = true
 

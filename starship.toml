@@ -23,7 +23,6 @@ disabled = true
 
 [cmd_duration]
 disabled = true
-min_time = 10_000
 
 [directory]
 truncation_symbol = "…/"
@@ -56,6 +55,7 @@ format = "via [$symbol]($style)"
 
 [elixir]
 symbol = "🧪 "
+format = '[$symbol($version \(OTP $otp_version\) )]($style)'
 
 # Redundant modules
 [aws]
@@ -81,10 +81,10 @@ disabled = true
 command = "bat project/build.properties | rg 'sbt.version' | sd '\\s' '' | hck -Ld '=' -f 2"
 detect_files = ["build.sbt"]
 style = "bold white"
-format = " sbt [$output]($style)"
+format = "sbt [$output]($style)"
 
 [custom.scala]
-command = "bat build.sbt | rg 'scalaVersion\\s*:=' | sd '\\s|\"' '' | hck -Ld '=' -f 2"
+command = "bat build.sbt | rg 'scalaVersion\\s*:=' | sd '\\s|\"|,' '' | hck -Ld '=' -f 2"
 detect_files = ["build.sbt"]
 style = "bold white"
-format = " scala [$output]($style)"
+format = " [](bold red) [$output]($style)"

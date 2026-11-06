@@ -1,0 +1,2 @@
+# Dictionaries to use for spell checking.
+dictionaries = ["en_us", "ru"]

@@ -46,8 +46,7 @@ d = "delete_selection_noyank"
 # A-c = "change_selection"
 # c = "change_selection_noyank"
 
-[keys.normal.space]
-e = [
+C-y = [
   ":sh rm -f /tmp/unique-file-h21a434",
   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file-h21a434',
   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
@@ -55,5 +54,6 @@ e = [
   ":redraw",
 ]
 
+[keys.normal.space]
 # Print the current line's git blame information to the statusline.
 B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"

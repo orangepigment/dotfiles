@@ -38,7 +38,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:ssh:*:users' ignored-patterns '_*' # Ignore system users starting with _
 ###
 
-# run-help override, unalias will print error on sourcig zshrc when alias is alread yremoved, so dev-null stderr
+# run-help override, unalias will print error on sourcig zshrc when alias is already removed, so dev-null stderr
 unalias run-help 2>/dev/null
 autoload -U run-help
 
@@ -81,18 +81,19 @@ function hike() {
   mkdir -p "${1}" && z "${1}"
 }
 
-zshfmt() {
+function zshfmt() {
   shfmt -ln zsh --indent 2 "$@"
 }
 ###
 
 export LEAF_THEME="gruvbox"
+export MDCAT_THEME="gruvbox-dark"
 
 # bat section
 export BAT_THEME="gruvbox-dark"
 export MANPAGER="col -bx | bat -p -l man"
 alias bathelp='bat --plain --language=help'
-help() {
+function help() {
   "$@" --help 2>&1 | bathelp
 }
 ###
@@ -115,42 +116,59 @@ function nucolored() {
   nu -c "open '${1}' | nu-highlight"
 }
 
-# == FZF SECTION ==
-EZA_IGNORE='--ignore-glob "Applications|Library|.git|.aspnet|.cabal|.cache|.cargo|.cups|.dart|.dart-tool|.dartServer|.docker|.dotnet|.ghcup|.gradle|.homebrew|.ipython|.ivy2|.local|.metals|.mill|.npm|.pub-cache|.rustup|.sbt|.stack|.terminfo|.thumbnails|.Trash|.venv|.wine|.yandex"'
-export FZF_DEFAULT_COMMAND="fd --no-ignore-vcs -L --type file --type dir --hidden --color=always"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGNORE} --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
+# === FZF SECTION ==
+# morhetz/gruvbox
+local FZF_GRUVBOX="--color=bg+:#3c3836,bg:#32302f,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934"
+# --ansi is not recommended as default because of performance. Can be extracted to per command opt
+export FZF_DEFAULT_OPTS="--no-height --no-reverse --highlight-line --ansi ${FZF_GRUVBOX}"
 
-export FZF_ALT_C_COMMAND="fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always"
-export FZF_ALT_C_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
+local EZA_IGNORE='--ignore-glob "Applications|Library|.git|.aspnet|.cabal|.cache|.cargo|.cups|.dart|.dart-tool|.dartServer|.docker|.dotnet|.ghcup|.gradle|.homebrew|.ipython|.ivy2|.local|.metals|.mill|.npm|.pub-cache|.rustup|.sbt|.stack|.terminfo|.thumbnails|.Trash|.venv|.wine|.yandex|.DS_Store"'
 
+local FZF_EZA_PREVIEW_COMMAND="eza -Ta ${EZA_IGNORE} --color=always {}"
+local FZF_DIR_PREVIEW_OPTS="--preview '${FZF_EZA_PREVIEW_COMMAND}'"
+local FZF_PATH_PREVIEW_OPTS="--preview 'if [ -d {} ]; then ${FZF_EZA_PREVIEW_COMMAND}; else bat -n --color=always --line-range=:200 {}; fi'"
+
+# Default command to use when input is tty
+export FZF_DEFAULT_COMMAND="fd -I --hidden --follow --exclude ".git" --color=always"
+
+# Ctrl-T Paste the selected files and directories onto the command-line
+export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+export FZF_CTRL_T_OPTS=${FZF_PATH_PREVIEW_OPTS}
+
+# Alt-C cd into the selected directory
+export FZF_ALT_C_COMMAND="fd -I --type dir --hidden --follow --exclude '.git'"
+export FZF_ALT_C_OPTS="--preview '${FZF_EZA_PREVIEW_COMMAND}'"
+
+# Ctrl-R Paste the selected command from history onto the command-line
 export FZF_CTRL_R_OPTS='--style=full'
 
-# --ansi is not recommended as default because of performance. Can be extracted to per command opt
-export FZF_DEFAULT_OPTS="--color=base16 --no-height --no-reverse --ansi"
-export FZF_COMPLETION_PATH_OPTS="--preview 'if [ -d {} ]; then eza -Ta ${EZA_IGNORE} --color=always {} | head -200; else bat -n --color=always --line-range=:200 {}; fi'"
-export FZF_COMPLETION_DIR_OPTS="--preview 'eza -Ta ${EZA_IGNORE} --color=always {}'"
+export FZF_COMPLETION_PATH_OPTS=${FZF_PATH_PREVIEW_OPTS}
+export FZF_COMPLETION_DIR_OPTS=${FZF_PATH_PREVIEW_OPTS}
 
-# Use fd for listing path candidates.
+# Use fd for listing path candidates
 _fzf_compgen_path() {
-  fd --no-ignore-vcs -L --type file --type dir --hidden --color=always . "$1"
+  fd --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --no-ignore-vcs -L --type dir --type symlink --hidden --color=always . "$1"
+  fd --type dir --hidden --follow --exclude ".git" . "$1"
 }
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-brew-search-install() {
-  # Outer parenthesis capturs output into an array
-  local selection=($(brew search "$@" | fzf -m))
-  brew install "${selection[@]}"
+function brew-search-install() {
+  # Outer parenthesis capture output into an array
+  local selection=($(brew search ${@} | fzf -m --preview 'brew info {}'))
+  if [[ ${#selection} -ne 0 ]]; then
+    brew install ${selection}
+  else
+    echo 'No packages selected for installation'
+  fi
 }
 
-# == FZF SECTION END ===
+# === FZF SECTION END ===
 
 [ -f "/Users/konstantin/.ghcup/env" ] && . "/Users/konstantin/.ghcup/env" # ghcup-env
 

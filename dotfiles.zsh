@@ -121,6 +121,14 @@ setup_extra_completions() {
   if [[ -n $(command -v delta) ]]; then
     delta --generate-completion zsh >"${COMPL_DIR}/_delta" || print -u2 "warn: Failed to setup completions for delta"
   fi
+
+  if [[ -n $(command -v mdcat) ]]; then
+    mdcat --completions zsh >"${COMPL_DIR}/_mdcat" || print -u2 "warn: Failed to setup completions for mdcat"
+  fi
+
+  if [[ -n $(command -v sttr) ]]; then
+    sttr completion zsh >"${COMPL_DIR}/_sttr" || print -u2 "warn: Failed to setup completions for sttr"
+  fi
 }
 
 apply() {
@@ -145,7 +153,7 @@ show_help() {
 
 local apply install save help
 
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
   show_help
   exit 0
 fi

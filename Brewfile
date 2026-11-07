@@ -1,3 +1,4 @@
+tap "abhimanyu003/sttr"
 tap "cablehead/tap"
 tap "dart-lang/dart"
 tap "ewhauser/tap"
@@ -52,6 +53,8 @@ brew "leaf-markdown-viewer"
 brew "macchina"
 # Language Server Protocol for Markdown
 brew "marksman"
+# Show markdown documents on text terminals
+brew "mdcat"
 # Modern shell for the GitHub era
 brew "nushell"
 # Painless compression and decompression for your terminal
@@ -62,6 +65,8 @@ brew "pastel"
 brew "poppler"
 # Modern replacement for ps written in Rust
 brew "procs"
+# SVG rendering tool and library
+brew "resvg"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Intuitive find & replace CLI
@@ -96,6 +101,8 @@ brew "yazi"
 brew "zoxide"
 # Blazingly fast Zsh syntax highlighter
 brew "zsh-patina"
+# A cross-platform, cli app to perform various string operations.
+brew "abhimanyu003/sttr/sttr", trusted: true
 # The surprisingly performant, Datastar-ready, Nushell-scriptable HTTP server that fits in your back pocket
 brew "cablehead/tap/http-nu", trusted: true
 # SDK

@@ -1,6 +1,7 @@
 # theme = "varua"
 # theme = "github_dark_dimmed"
-theme = "ayu_dark"
+# theme = "ayu_dark"
+theme = "gruvbox"
 
 [editor]
 mouse = false

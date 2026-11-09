@@ -72,7 +72,7 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "codebook"]
+language-servers = ["markdown-oxide", "codebook"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 auto-format = true
 
@@ -80,3 +80,16 @@ auto-format = true
 name = "json"
 formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
 auto-format = true
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist", "codebook"]
+auto-format = true
+
+# tinymist (typst lsp) settings
+[language-server.tinymist]
+[language-server.tinymist.config]
+exportPdf = "onType"
+outputPath = "$root/target/$dir/$name"
+preview.background.enabled = true
+preview.background.args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"]

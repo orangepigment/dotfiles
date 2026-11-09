@@ -57,6 +57,13 @@ format = "via [$symbol]($style)"
 symbol = "🧪 "
 format = '[$symbol($version \(OTP $otp_version\) )]($style)'
 
+[typst]
+symbol = ""
+# style = "bold #0093A7" # default value
+style = "#218d9d" # official logo colour
+version_format = "${raw}"
+format = "[$symbol:($version )]($style)"
+
 # Redundant modules
 [aws]
 disabled = true

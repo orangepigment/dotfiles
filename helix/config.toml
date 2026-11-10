@@ -9,6 +9,7 @@ cursorline = true
 cursorcolumn = true
 end-of-line-diagnostics = "hint"
 bufferline = "multiple"
+shell = ["zsh", "-c"]
 
 [editor.soft-wrap]
 enable = true

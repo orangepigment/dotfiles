@@ -6,6 +6,7 @@ readonly script_name=$0
 
 readonly DOTFILES=(
   "$HOME/.zshrc:.zshrc"
+  "$HOME/.local/bin/zshfmt:bin/zshfmt"
   "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty:ghostty.config"
   "$HOME/Library/Application Support/nushell/config.nu:nushell/config.nu"
   "$HOME/.config/starship.toml:starship.toml"

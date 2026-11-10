@@ -11,6 +11,10 @@ setopt GLOB_DOTS
 
 setopt NO_BEEP
 
+# Set uniquniess for PATH and fpath
+typeset -U PATH
+typeset -U fpath
+
 export PATH="$HOME/Library/Application Support/Coursier/bin/metals:$HOME/.local/bin:$PATH"
 export EDITOR=hx
 
@@ -79,10 +83,6 @@ function hike() {
     return 1
   fi
   mkdir -p "${1}" && z "${1}"
-}
-
-function zshfmt() {
-  shfmt -ln zsh --indent 2 "$@"
 }
 ###
 
@@ -177,6 +177,3 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(zsh-patina activate)"
 
-# Remove duplicate entries
-typeset -U PATH
-typeset -U fpath
